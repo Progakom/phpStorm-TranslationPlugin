@@ -1,0 +1,56 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>stocrm.TranslationPlugin</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>TranslationPlugin</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="info@stocrm.ru" url="https://stocrm.ru">stocrm</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+    Плагин позволяет добавлять тесты и коды ошибок<br>
+    Комбинация control alt W, W
+    ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+
+    </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService
+                serviceImplementation="stocrm.kotlin.AppSettingsState"/>
+    </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable
+                parentId="tools"
+                instance="stocrm.kotlin.AppSettingsConfigurable"
+                id="stocrm.kotlin.AppSettingsConfigurable"
+                displayName="Translation Plugin Settings"/>
+    </extensions>
+
+    <actions>
+        <action
+                id="stocrm.kotlin.SimplePopUpAction"
+                class="stocrm.kotlin.SimplePopUpAction"
+                text="Add Translation"
+                description="Shows popup">
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="control alt W"
+                    second-keystroke="W"/>
+        </action>
+    </actions>
+
+</idea-plugin>
